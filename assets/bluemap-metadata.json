@@ -1,0 +1,46 @@
+{
+  "source": "https://ironfall.org/bluemap/",
+  "map": "world",
+  "mapLabel": "world (overworld)",
+  "bluemapVersion": "5.12-mc1.20-6",
+  "retrievedUTC": "2026-10-25",
+  "lod": 2,
+  "blocksPerPixel": 5,
+  "pixelWidth": 6144,
+  "pixelHeight": 3072,
+  "worldBounds": {
+    "minX": 0,
+    "maxX": 30720,
+    "minZ": 0,
+    "maxZ": 15360
+  },
+  "transform": {
+    "x": "worldX = pixelX * 5; pixel center = (pixelX + 0.5) * 5",
+    "z": "worldZ = pixelY * 5; north/up = decreasing Z"
+  },
+  "tileFormat": {
+    "size": [
+      501,
+      1002
+    ],
+    "colorTopRows": 501,
+    "metadataBottomRows": 501,
+    "storedColorCrop": [
+      0,
+      0,
+      500,
+      500
+    ],
+    "tileWorldSize": 2500,
+    "tilePathExample": "maps/world/tiles/2/x6/z2.png",
+    "digitSeparatedCoordinatePath": true
+  },
+  "attribution": "Basemap copied from Ironfall BlueMap. BlueMap is an open-source map renderer; world imagery remains attributed to the Ironfall server.",
+  "notes": [
+    "Terrain color only; original 3D geometry, live players, claims and live markers are not included.",
+    "The last overlapping color column and row are removed from each tile before stitching.",
+    "Shader samples unflipped image data; raw PNG top = minimum Z, left = minimum X.",
+    "Map geometry maps pixel centers at +0.5 times LOD scale, so no geographic reprojection is needed."
+  ],
+  "errors": []
+}

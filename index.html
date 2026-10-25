@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101718">
+<title>Ironfall Resource Atlas</title>
+<meta name="description" content="Explore Ironfall's ore density over a copied BlueMap, with resource layers, depth bands, and verified mining hotspots.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar"><div class="brand"><span class="brandmark">IF</span><div><h1>IRONFALL <span>RESOURCE ATLAS</span></h1><p>A world of resources. A clearer place to dig.</p></div></div><div class="header-actions"><span id="scanBadge" class="scan-badge">Loading survey</span><button id="methodButton" class="quiet">About the survey</button><a id="originalLink" href="https://ironfall.org/bluemap/#world:16900:0:5515:1000:0:0:0:1:flat" target="_blank" rel="noopener">Original BlueMap ↗</a><button id="mobileLayers" class="mobile-only">Layers</button></div></header>
+<main class="workspace">
+<aside id="sidebar" class="sidebar" aria-label="Resource controls">
+ <div class="sidebar-heading"><span class="eyebrow">EXPLORE THE UNDERGROUND</span><h2>Resource layers</h2><p>Toggle colors to compare. Select a name to inspect its richest areas.</p></div>
+ <div class="layer-tools"><input id="resourceSearch" type="search" placeholder="Find a resource…" aria-label="Find a resource"><div><button id="showAll">Show all</button><button id="hideAll">Hide all</button></div></div>
+ <div id="layerList" class="layer-list"></div>
+ <div class="settings"><div class="setting-title"><label for="depth">Depth range</label><span id="depthNote">All heights</span></div><select id="depth"><option value="all">All heights · Y −64 to 319</option><option value="deep">Deep underground · Y −64 to −1</option><option value="lower">Lower ground · Y 0 to 63</option><option value="upper">High ground · Y 64 to 319</option><option value="custom">Choose depth bands…</option></select><div id="customDepth" class="custom-depth" hidden><label>From Y<select id="minDepth"></select></label><label>Through Y<select id="maxDepth"></select></label></div>
+ <div class="setting-title"><label for="opacity">Overlay strength</label><output id="opacityValue">70%</output></div><input id="opacity" type="range" min="10" max="100" value="70">
+ <label class="switch-row"><span>Mark density peaks</span><input id="peaksToggle" type="checkbox" checked></label>
+ </div>
+ <div class="focus-heading"><span class="eyebrow">RICHEST SEARCH AREAS</span><h2 id="focusName">Lithium</h2><p id="focusSummary">Loading resource counts…</p></div>
+ <div id="hotspotList" class="hotspot-list"></div>
+ <button id="exportButton" class="export-button">↓ Download hotspot coordinates</button>
+ <p class="sidebar-foot">Counts cover 256 × 256 block areas. Peaks are dense search areas, not single connected veins.</p>
+</aside>
+<section id="mapArea" class="map-area" aria-label="Interactive Ironfall resource map">
+ <canvas id="map" aria-label="Map. Drag to pan, scroll to zoom, and click an area to inspect ore counts." role="img"></canvas>
+ <div class="map-caption"><span class="map-dot"></span><span>COPIED BLUEMAP · OVERWORLD</span></div>
+ <div class="map-controls"><button id="zoomIn" aria-label="Zoom in">+</button><button id="zoomOut" aria-label="Zoom out">−</button><button id="fit" aria-label="Fit entire world">Fit</button></div>
+ <div class="north" aria-label="North is up">N<span>↑</span></div>
+ <div class="legend"><div><strong id="legendName">Lithium</strong><span>Relative density</span></div><div id="legendBar" class="legend-bar"></div><div class="legend-values"><span>Trace</span><span id="legendMax">Peak</span></div></div>
+ <form id="jumpForm" class="jump-form"><label for="jumpX">Jump to</label><input id="jumpX" type="number" placeholder="X" aria-label="World X coordinate"><input id="jumpZ" type="number" placeholder="Z" aria-label="World Z coordinate"><button type="submit">Go</button></form>
+ <div id="hoverTip" class="hover-tip" hidden></div>
+ <article id="inspector" class="inspector" hidden><button id="closeInspector" class="close" aria-label="Close selected area">×</button><span class="eyebrow">SELECTED SEARCH AREA</span><h3 id="inspectTitle"></h3><p id="inspectRange"></p><div id="inspectRows"></div><p class="inspector-note">Click elsewhere to compare. Counts include the selected depth bands.</p></article>
+ <div class="map-footer"><span id="coordinates">X — · Z —</span><span id="scaleLabel">— blocks</span><span>Terrain: Ironfall / BlueMap · Snapshot copy</span></div>
+ <div id="loading" class="loading"><div class="loading-mark">IF</div><h2>Reading the underground</h2><p id="loadingMessage">Loading the copied map and resource survey…</p></div>
+</section>
+</main>
+<dialog id="methodDialog"><button id="closeMethod" class="close" aria-label="Close survey details">×</button><span class="eyebrow">HOW TO READ THIS ATLAS</span><h2>A complete terrain survey</h2><div id="methodDetails"></div><p>The background is a separate, flat copy of Ironfall’s BlueMap terrain. The original site is unchanged. Live players, claims, markers, and 3D geometry are not copied.</p><p>Ore counts come from the supplied world save; the BlueMap imagery was copied on October 25, 2026. Changes made on the live server after the save are not reflected in the ore layers.</p><p>Each color uses its own scale: a bright uranium cell and a bright zinc cell mean each is rich for that resource, not that they contain equal quantities. Hide other layers for a clean comparison.</p><p>Depth is grouped into exact 16-block sections. All-height density sums the entire vertical column. Peak markers rank 256 × 256 areas by ore-block count; example coordinates identify a verified block in a locally rich 16 × 16 × 16 section, not the center of a single vein. No ores are inferred from surface biomes.</p><p>Gold and nether gold are separate layers. Amethyst counts solid amethyst and budding amethyst blocks. Tar and bauxite are included as industrial resources.</p><p id="coverageDetails"></p><a href="assets/bluemap-metadata.json" target="_blank">Background source and alignment metadata ↗</a></dialog>
+<script src="app.js"></script>
+</body></html>
