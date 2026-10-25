@@ -8,19 +8,21 @@ A separate, flat copy of Ironfall’s BlueMap terrain with ore density overlays 
 
 - 22 resource layers, including lithium, pyrochlore, ordinary gold, nether gold, beryllium, uranium, zinc, copper, iron, lead, nickel, silver, sulfur, coal, redstone, lapis, diamond, emerald, bauxite, tar, amethyst, and nether quartz.
 - Independently toggle layers, filter by depth, and inspect the highest-density search areas.
+- Measured **16 × 16 block density cells**: 16 times finer in each direction than the original 256-block overlay, with smooth display interpolation.
+- Switch the terrain to grayscale without changing resource colors.
 - Pan and zoom, jump to world coordinates, inspect exact ore examples, and export hotspot coordinates.
 - No account, backend, or installation is needed.
 
 ## Downloads
 
-- [Self-contained offline map](downloads/ironfall-resource-atlas.html) — save this file, then open it in a modern browser.
+- [Self-contained offline map ZIP](downloads/ironfall-resource-atlas-offline.zip) — extract the entire ZIP, keep the `density-inline` folder next to the HTML, and open the HTML in a modern browser. The full-resolution data makes this download larger than the original version.
 - [All-resource hotspot coordinates](downloads/ironfall-resource-hotspots.csv)
 
 ## Survey coverage and interpretation
 
 The atlas uses a complete scan of **1,843,200 saved chunks** in **1,800 Overworld region files**, with **zero scan errors**. Coverage is X 0–30,719, Z 0–15,359, Y −64–319. Every one of the 7,200 density cells contains 256 saved chunks. Counts were independently checked for all resource types and all 24 depth bands in four complete region files, plus ordinary/nether gold in three other regions.
 
-Density means the number of saved resource blocks in a **256 × 256 block column**, within the selected 16-block Y sections. Each ore layer has its own relative color scale. Markers identify dense search areas; they do not represent single connected veins. The top marker is the absolute richest grid cell; other suggested search areas are spatially separated by at least 512 blocks between centers. Example coordinates identify a saved block in a locally rich 16 × 16 × 16 section.
+The overlay measures saved resource blocks in **16 × 16 block columns**, within the selected 16-block Y sections. It contains 1,843,200 measured horizontal cells. The fine arrays were independently summed and compared against every original 256-block cell, resource, and depth band, with exact equality. Detailed resource files load on demand, including exact custom depth bands. Hotspot rankings and the area inspector continue to summarize **256 × 256 search areas** for practical regional comparisons. Each ore layer has its own relative color scale. Interpolation smooths the display between measured cells; tooltip counts use the original measured 16 × 16 chunk values. The grayscale setting affects terrain only. Markers identify dense search areas; they do not represent single connected veins. The top marker is the absolute richest grid cell; other suggested search areas are spatially separated by at least 512 blocks between centers. Example coordinates identify a saved block in a locally rich 16 × 16 × 16 section.
 
 Ore data reflects the supplied world save and may differ from the live server. The map does not update automatically. The original BlueMap and world save are unchanged. Raw world files, player data, and server commands are not included.
 
