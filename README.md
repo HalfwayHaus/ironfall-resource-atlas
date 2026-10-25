@@ -37,3 +37,9 @@ Terrain imagery was copied from [Ironfall BlueMap](https://ironfall.org/bluemap/
 Serve this directory using a static HTTP server, such as `python -m http.server 8000`, then open `http://localhost:8000`. Alternatively, use the self-contained offline download above.
 
 The main site is plain HTML, CSS, and JavaScript with no build step. GitHub Pages publishes the root of the `main` branch.
+
+## Confirmed terracotta iron markers
+
+A full rescan of all 1,843,200 map chunks found **38,090 qualifying 16 × 16 × 16 sections**. The separate **Terracotta iron veins** toggle is enabled by default. Markers cluster when zoomed out; click a cluster to zoom in, then click a marker for exact ore coordinates, section bounds, and observed iron/terracotta/tuff counts. **Browse nearby** provides keyboard-accessible marker navigation, and the coordinates button exports the complete list. Markers respect the selected depth bands and are independent of the ordinary iron density layer.
+
+A marker requires at least 80 iron ore blocks, 16 uncolored terracotta, 8 tuff, and 8 distinct iron blocks directly touching uncolored terracotta inside that section. Every section meeting this rule is marked; a single vein can span multiple markers. Small or heavily mined remnants below the thresholds may be absent. The source, thresholds and all points are in `data/terracotta-iron.json`.
